@@ -37,6 +37,18 @@ public class color_functions
             case"Black":
                 blue_print.textArea.setForeground(Color.BLACK);
                 break;
+            case"Purple":
+                blue_print.textArea.setForeground(new Color(134, 69, 211 ));
+                break;
+            case"Brown":
+                blue_print.textArea.setForeground(new Color(112, 61, 11));
+                break;
+            case"Orange":
+                blue_print.textArea.setForeground(new Color(239, 117, 5));
+                break;
+            case"Gold":
+                blue_print.textArea.setForeground(new Color(210, 154, 22));
+                break;
         }
     }
 }

@@ -4,7 +4,7 @@ public class edit_functions
 
     public edit_functions(blueprint blue_print)
     {
-       this.blue_print = blue_print;
+        this.blue_print = blue_print;
     }
 
     public void undo()

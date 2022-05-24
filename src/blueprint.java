@@ -21,13 +21,14 @@ public class blueprint implements ActionListener
     public JMenuItem iNew, iSave, iSaveAs, iOpen, iClose;
 
     //for format menu
-    JMenuItem iWrap, fontArial, fontTNR, fontComicSans, fontCalibri, fontGeorgia, fontCambria, fontRockwell;
-    JMenuItem iSize8, iSize12, iSize16, iSize20, iSize24, iSize28, iSize36;
+    JMenuItem iWrap, fontArial, fontTNR, fontComicSans, fontCalibri, fontGeorgia, fontCambria, fontRockwell, fontGaramond,
+            fontCentury, fontConsolas, fontTahoma, fontConstantia;
+    JMenuItem iSize8, iSize12, iSize16, iSize20, iSize24, iSize28, iSize36, iSize48, iSize72, iSize100, iSize125;
     JMenu iFont, iFontSize;
     boolean isWordWrapOn = false;
 
     // for color menu
-    JMenuItem color1, color2, color3, color4, color5, color6, color7, color8;
+    JMenuItem color1, color2, color3, color4, color5, color6, color7, color8, color9, color10, color11, color12;
 
     // for edit menu
     JMenuItem undo, redo;
@@ -45,12 +46,14 @@ public class blueprint implements ActionListener
 
     public static void main(String[] args)
     {
-       new blueprint();
+        new blueprint();
     }
 
     public blueprint() // main GUI blueprint
     {
         generateWindow();
+        window_panel wPanel = window_panel.getInstance();
+        wPanel.windowProperties(window);
         generateTextArea();
         generateScrollBar();
         generateMenuBar();
@@ -70,8 +73,8 @@ public class blueprint implements ActionListener
     public void generateWindow() // creates a window
     {
         window = new JFrame("Notepad--"); // program name
-        window.setSize(600, 500); // setting size
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // for appropriately closing our program
+        //window.setSize(600, 500); // setting size
+        //window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // for appropriately closing our program
     }
 
     public void generateTextArea()
@@ -90,12 +93,12 @@ public class blueprint implements ActionListener
     }
 
     public void generateScrollBar() // generates a scroll bar that will be displayed horizontally AS NEEDED, and a vertical
-                                   // one that will be displayed ALWAYS
+    // one that will be displayed ALWAYS
     {
         scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, // uses textArea
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder()); // deletes border which does not look aesthetically
-                                                                // pleasing.
+        // pleasing.
         window.add(scrollPane);
     }
 
@@ -192,6 +195,31 @@ public class blueprint implements ActionListener
         fontRockwell.setActionCommand("Rockwell");
         iFont.add(fontRockwell);
 
+        fontGaramond = new JMenuItem("Garamond");
+        fontGaramond.addActionListener(this);
+        fontGaramond.setActionCommand("Garamond");
+        iFont.add(fontGaramond);
+
+        fontCentury = new JMenuItem("Century");
+        fontCentury.addActionListener(this);
+        fontCentury.setActionCommand("Century");
+        iFont.add(fontCentury);
+
+        fontConsolas = new JMenuItem("Consolas");
+        fontConsolas.addActionListener(this);
+        fontConsolas.setActionCommand("Consolas");
+        iFont.add(fontConsolas);
+
+        fontTahoma = new JMenuItem("Tahoma");
+        fontTahoma.addActionListener(this);
+        fontTahoma.setActionCommand("Tahoma");
+        iFont.add(fontTahoma);
+
+        fontConstantia = new JMenuItem("Constantia");
+        fontConstantia.addActionListener(this);
+        fontConstantia.setActionCommand("Constantia");
+        iFont.add(fontConstantia);
+
         iFontSize = new JMenu("Font Size");
         menuFormat.add(iFontSize);
 
@@ -229,6 +257,26 @@ public class blueprint implements ActionListener
         iSize36.addActionListener(this);
         iSize36.setActionCommand("36");
         iFontSize.add(iSize36);
+
+        iSize48 = new JMenuItem("48");
+        iSize48.addActionListener(this);
+        iSize48.setActionCommand("48");
+        iFontSize.add(iSize48);
+
+        iSize72 = new JMenuItem("72");
+        iSize72.addActionListener(this);
+        iSize72.setActionCommand("72");
+        iFontSize.add(iSize72);
+
+        iSize100 = new JMenuItem("100");
+        iSize100.addActionListener(this);
+        iSize100.setActionCommand("100");
+        iFontSize.add(iSize100);
+
+        iSize125 = new JMenuItem("125");
+        iSize125.addActionListener(this);
+        iSize125.setActionCommand("125");
+        iFontSize.add(iSize125);
     }
 
     public void generateColorMenu()
@@ -273,6 +321,25 @@ public class blueprint implements ActionListener
         color8.setActionCommand("Black");
         menuColor.add(color8);
 
+        color9 = new JMenuItem("Purple");
+        color9.addActionListener(this);
+        color9.setActionCommand("Purple");
+        menuColor.add(color9);
+
+        color10 = new JMenuItem("Brown");
+        color10.addActionListener(this);
+        color10.setActionCommand("Brown");
+        menuColor.add(color10);
+
+        color11 = new JMenuItem("Orange");
+        color11.addActionListener(this);
+        color11.setActionCommand("Orange");
+        menuColor.add(color11);
+
+        color12 = new JMenuItem("Gold");
+        color12.addActionListener(this);
+        color12.setActionCommand("Gold");
+        menuColor.add(color12);
     }
 
     public void generateEditMenu()
@@ -320,6 +387,14 @@ public class blueprint implements ActionListener
                 break;
             case "36": format.generateFonts(36);
                 break;
+            case "48": format.generateFonts(48);
+                break;
+            case "72": format.generateFonts(72);
+                break;
+            case "100": format.generateFonts(100);
+                break;
+            case "125": format.generateFonts(125);
+                break;
             case "Arial":
             case "Calibri":
             case "Comic Sans MS":
@@ -327,6 +402,11 @@ public class blueprint implements ActionListener
             case "Georgia":
             case "Times New Roman":
             case "Rockwell":
+            case "Garamond":
+            case "Century":
+            case "Consolas":
+            case "Tahoma":
+            case "Constantia":
                 format.setFont(command);
                 break;
             case "Blue":
@@ -337,6 +417,10 @@ public class blueprint implements ActionListener
             case "Cyan":
             case "Green":
             case "Black":
+            case "Purple":
+            case "Brown":
+            case "Orange":
+            case "Gold":
                 color.setColor(command);
                 break;
             case "Undo":
